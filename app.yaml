@@ -7,8 +7,10 @@ threadsafe: true
 handlers:
 - url: /
   script: catfacts.application
+  login: admin
 - url: /signup
   script: catfacts.application
+  login: admin
 - url: /cancel
   script: catfacts.application
 - url: /send
