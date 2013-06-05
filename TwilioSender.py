@@ -229,7 +229,6 @@ def sendSMS(number, fact):
 		client.sms.messages.create(to=number,
 		                           from_=TWILIO_NUMBER,
 		                           body=chunk)
-		sleep(2)
 
 def sendFact(number):
 	fact = random.choice(facts) + "\n\nReply %s to stop." % (stop_generator())
