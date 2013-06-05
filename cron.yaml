@@ -1,4 +1,5 @@
 cron:
-    #- description: send out cat facts
-    #  url: /send
-    #  schedule: every 1 minutes
+- description: send out cat facts
+  url: /send
+  schedule: every 5 minutes from 11:00 to 23:00
+  timezone: America/New_York

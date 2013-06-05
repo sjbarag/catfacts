@@ -5,7 +5,7 @@ from google.appengine.api import mail
 from google.appengine.ext import db
 
 class Member(db.Model):
-	email = db.EmailProperty(required=True)
+	email = db.StringProperty(required=True)
 
 fact = ""
 
@@ -216,7 +216,7 @@ def sendText(email, the_fact):
 	message = mail.EmailMessage(sender="Cat Facts <sjbarag@gmail.com>",
 	                            subject="Cat Facts")
 	message.to = email
-	message.body  = the_fact +"\n\n" + "Reply '" +stop_generator(6) +"' to stop."
+	message.body  = the_fact +"\n\n" + "Reply '" +stop_generator(10) +"' to stop."
 
 	message.send()
 
@@ -224,13 +224,13 @@ def sendText(email, the_fact):
 
 class MainPage(webapp2.RequestHandler):
 	def get(self):
-		fact = random.choice(facts)
-		self.response.headers['Content-Type'] = 'text/plain'
-		self.response.write(fact)
 		q = Member.all()
 		for m in q.run(limit=4):
-			print "Emailing %s: %s" % (m.email, fact)
-		#sendText(fact)
+			fact = random.choice(facts)
+			sendText(m.email, fact)
+
+		self.response.headers['Content-Type'] = 'text/plain'
+		self.response.write(fact)
 
 application = webapp2.WSGIApplication([
 	('/send', MainPage),
