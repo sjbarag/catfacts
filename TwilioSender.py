@@ -228,7 +228,7 @@ def sendSMS(number, fact):
 	for chunk in chunks(fact):
 		client.sms.messages.create(to=number,
 		                           from_=TWILIO_NUMBER,
-		                           body=fact)
+		                           body=chunk)
 		sleep(2)
 
 def sendFact(number):

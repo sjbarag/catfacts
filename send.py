@@ -1,6 +1,6 @@
 import webapp2
 from google.appengine.ext import db
-from TwilioSender import sendSMS
+from TwilioSender import sendFact
 from CatfactsMember import Member
 
 fact = ""
