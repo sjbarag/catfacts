@@ -1,11 +1,9 @@
 import webapp2
 import string
 import random
-from google.appengine.api import mail
 from google.appengine.ext import db
-
-class Member(db.Model):
-	email = db.StringProperty(required=True)
+from TwilioSender import sendSMS
+from CatfactsMember import Member
 
 fact = ""
 
@@ -211,23 +209,12 @@ facts = [
 	"""The Ancient Egyptian word for cat was mau, which means "to see".""",
 ]
 
-
-def sendText(email, the_fact):
-	message = mail.EmailMessage(sender="Cat Facts <sjbarag@gmail.com>",
-	                            subject="Cat Facts")
-	message.to = email
-	message.body  = the_fact +"\n\n" + "Reply '" +stop_generator(10) +"' to stop."
-
-	message.send()
-
-
-
 class MainPage(webapp2.RequestHandler):
 	def get(self):
 		q = Member.all()
 		for m in q.run(limit=4):
-			fact = random.choice(facts)
-			sendText(m.email, fact)
+			fact = random.choice(facts) + "\n\nReply %s to stop." % (stop_generator())
+			sendSMS(m.number, fact)
 
 		self.response.headers['Content-Type'] = 'text/plain'
 		self.response.write(fact)
