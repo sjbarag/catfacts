@@ -2,8 +2,7 @@ from twilio import twiml
 from twilio.rest import TwilioRestClient
 from time import sleep
 from math import ceil
-import TwilioCreds
-
+from TwilioCreds import *
 WELCOME_STRING = "Thank you for subscribing to CAT FACTS!  Every hour, you will receive fun facts about CATS!"
 
 def chunks(s):
