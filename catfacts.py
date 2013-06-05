@@ -3,6 +3,7 @@ from google.appengine.ext import db
 from google.appengine.api import mail
 from TwilioSender import sendWelcome
 from CatfactsMember import Member
+import twilio
 
 class MainPage(webapp2.RequestHandler):
 	def get(self):
@@ -55,7 +56,14 @@ class Members(webapp2.RequestHandler):
 				</body></html>
 			""")
 
+class Cancel(webapp2.RequestHandler):
+	def get(self):
+		resp = twilio.twiml.Response()
+		resp.sms("Thanks mew!  Your CAT FACTS subscription has been renewed.")
+		self.response.out.write(str(resp))
+
 application = webapp2.WSGIApplication([
 	('/', MainPage),
 	('/signup', Members),
+	('/cancel', Cancel)
 ], debug=True)
