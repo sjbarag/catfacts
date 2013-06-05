@@ -1,2 +1,6 @@
 *.pyc
 TwilioCreds.py
+httplib2
+six.py
+twilio
+venv/
