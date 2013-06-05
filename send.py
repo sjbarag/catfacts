@@ -13,7 +13,7 @@ class MainPage(webapp2.RequestHandler):
 		self.response.headers['Content-Type'] = 'text/plain'
 		self.response.write(fact)
 
-		for m in q.run(limit=4):
+		for m in q.run(limit=50):
 			sendFact(m.number)
 
 
