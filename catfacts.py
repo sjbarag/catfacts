@@ -59,7 +59,7 @@ class Members(webapp2.RequestHandler):
 class Cancel(webapp2.RequestHandler):
 	def get(self):
 		resp = twilio.twiml.Response()
-		resp.sms("Thanks mew!  Your CAT FACTS subscription has been renewed.")
+		resp.sms("Thank mew!  Your CAT FACTS subscription has been renewed.")
 		self.response.out.write(str(resp))
 
 application = webapp2.WSGIApplication([
