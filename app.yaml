@@ -9,8 +9,6 @@ handlers:
   script: catfacts.application
 - url: /signup
   script: catfacts.application
-- url: /success
-  script: catfacts.application
 - url: /send
   script: send.application
   login: admin

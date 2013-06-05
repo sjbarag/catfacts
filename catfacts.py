@@ -37,7 +37,11 @@ class Members(webapp2.RequestHandler):
 				m = Member(number = ccnumber)
 				m.put()
 				sendWelcome(ccnumber)
-				self.redirect('/success')
+				self.response.out.write("""
+					<html><body>
+					Thanks for signing up for Cat Facts!
+					</body></html>
+				""")
 			else:
 				self.response.out.write("""
 					<html><body>
@@ -51,16 +55,7 @@ class Members(webapp2.RequestHandler):
 				</body></html>
 			""")
 
-class Success(webapp2.RequestHandler):
-	def get(self):
-		self.response.out.write("""
-			<html><body>
-			Thanks for signing up for Cat Facts!
-			</body></html>
-		""")
-
 application = webapp2.WSGIApplication([
 	('/', MainPage),
 	('/signup', Members),
-	('/success', Success),
 ], debug=True)
