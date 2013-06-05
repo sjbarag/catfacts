@@ -9,7 +9,7 @@ class MainPage(webapp2.RequestHandler):
 		self.response.out.write('<html><body>')
 
 		q = Member.all()
-		if len(list(q.run(limit=5))) > 4:
+		if len(list(q.run(limit=51))) > 50:
 			self.response.out.write("""
 			Sorry, Cat Facts has too many users.
 			</body></html>""")
