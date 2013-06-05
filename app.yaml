@@ -1,0 +1,16 @@
+application: catfacts-sender
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /
+  script: catfacts.application
+- url: /signup
+  script: catfacts.application
+- url: /success
+  script: catfacts.application
+- url: /send
+  script: send.application
+  login: admin
