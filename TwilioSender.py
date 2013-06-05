@@ -231,7 +231,7 @@ def sendSMS(number, fact):
 		                           body=chunk)
 
 def sendFact(number):
-	fact = random.choice(facts) + "\n\nReply %s to stop." % (stop_generator())
+	fact = random.choice(facts) + "\n\nReply '%s' to stop." % (stop_generator())
 	sendSMS(number, fact)
 
 def sendWelcome(number):
